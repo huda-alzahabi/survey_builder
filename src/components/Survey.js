@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import {FaArrowCircleRight} from "react-icons/fa";
 
 const Survey = ({survey}) => {
   return (
 	  <div
       className="task"
-    ><h3>{survey.title}{" "}</h3>
+    ><h3>{survey.title}{" "}<FaArrowCircleRight/> </h3>
 	</div>
   );
 };
