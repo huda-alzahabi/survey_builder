@@ -3,30 +3,36 @@
 import React, { useState } from "react";
 import Button from "./Button";
 const template = { items: [{ question: "", options: [""] }] };
+const optionsCount = { items: [{ options: [1] }] };
 const AddSurvey = ({
   onAdd,
   question_count,
   option_count,
-  onAddQuestion,
   showAddQuestion,
   showAddOption,
-  onAddOption,
 }) => {
   // Initialize Input State
   const [title, setTitle] = useState("");
   const [state, setState] = useState(template);
   const [questions, setQuestions] = useState([]);
   const [options, setOptions] = useState([]);
+  const [totalCount, setTotalCount] = useState(optionsCount);
 
   //Add Data to Backend on Submit
   const onSubmit = (e) => {
     e.preventDefault();
-    onAdd({ title, questions, options });
+    onAdd({ title, ...state });
+    setState(template);
+    setTotalCount(optionsCount);
     setTitle("");
     setQuestions([]);
     setOptions([]);
   };
   const handleAddQuestion = () => {
+    const newTotalCount = { ...totalCount };
+    const newCount = { options: [1] };
+    newTotalCount.items.push(newCount);
+    setTotalCount(newTotalCount);
     const newState = { ...state };
     const newQuestion = { question: "", options: [""] };
     newState.items.push(newQuestion);
@@ -34,6 +40,9 @@ const AddSurvey = ({
     setState(newState);
   };
   const handleAddOption = (i) => {
+    const newTotalCount = { ...totalCount };
+    newTotalCount.items[i].options.push(1);
+    setTotalCount(newTotalCount);
     const newState = { ...state };
     newState.items[i].options.push("");
     setState(newState);
@@ -44,14 +53,17 @@ const AddSurvey = ({
     item.question = value;
     newState.items[i] = item;
     setState(newState);
-    console.log(state);
   };
   const handleChangeOption = (value, i, j) => {
     const newState = { ...state };
-    const item = { ...newState.items[i] };
+    const items = [...newState.items];
+    const item = { ...items[i] };
     item.options[j] = value;
     newState.items[i].options[j] = item.options[j];
-    setState(newState);
+    console.log(newState);
+    setTimeout(() => {
+      setState(newState);
+    }, 10);
   };
   return (
     <form className="add-form" onSubmit={onSubmit}>
@@ -60,6 +72,7 @@ const AddSurvey = ({
         <input
           type="text"
           placeholder="Add Survey"
+          value={title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -70,7 +83,7 @@ const AddSurvey = ({
         text={showAddQuestion ? "Done" : "Add Question"}
         onClick={handleAddQuestion}
       />
-      {state.items.map((c, index) => {
+      {totalCount.items.map((c, index) => {
         return (
           <div className="form-control">
             <input
@@ -78,6 +91,7 @@ const AddSurvey = ({
               id={index}
               type="text"
               placeholder={"Text field"}
+              value={c.question}
               onChange={(e) => {
                 handleChangeQuestion(e.target.value, index);
               }}
@@ -90,7 +104,7 @@ const AddSurvey = ({
                 handleAddOption(index);
               }}
             />
-            {state.items[index].options.map((c, index2) => {
+            {totalCount.items[index].options.map((c, index2) => {
               return (
                 <div className="form-control option-control">
                   <input

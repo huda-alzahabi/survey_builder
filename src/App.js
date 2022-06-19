@@ -48,18 +48,9 @@ function App() {
       },
       body: JSON.stringify({
         survey,
-        question_count: question_count,
-        option_count: option_count,
       }),
     });
     const data = await res.json();
-    console.log(
-      JSON.stringify({
-        survey,
-        question_count: question_count,
-        option_count: option_count,
-      })
-    );
     setSurveys([...surveys, data]);
   };
 
