@@ -1,3 +1,6 @@
+/*Button Component with a style, text and onclick function*/
+/*Called everytime a new button is needed*/
+
 import React from "react";
 
 const Button = ({color, text, onClick}) => {

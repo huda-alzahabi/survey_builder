@@ -1,3 +1,5 @@
+/*AddSurvey Component to add a new survey to the database*/
+
 import React, {useState} from "react";
 import Button from "./Button";
 
@@ -10,12 +12,15 @@ const AddSurvey = ({
     showAddOption,
     onAddOption
 }) => {
+    // Initialize Input State
     const [title,
         setTitle] = useState("");
     const [questions,
         setQuestions] = useState([]);
     const [options,
         setOptions] = useState([]);
+
+    //Add Data to Backend on Submit
     const onSubmit = (e) => {
         e.preventDefault();
         if (!title || !questions || !options) {

@@ -6,14 +6,11 @@ import Surveys from "./components/Surveys";
 import AddSurvey from "./components/AddSurvey";
 
 function App() {
-   // Initialize State
+  // Initialize State
   const [surveys, setSurveys] = useState([]);
   const [showAddSurvey, setShowAddSurvey] = useState(false);
 
-  const [questions, setQuestions] = useState([]);
   const [showAddQuestion, setShowAddQuestion] = useState(false);
-
-  const [options, setOptions] = useState([]);
   const [showAddOption, setShowAddOption] = useState(false);
 
   const [question_count, setQCount] = useState(1);
@@ -56,10 +53,6 @@ function App() {
         option_count:option_count})
     });
     const data = await res.json();
-    console.log(JSON.stringify(
-       { survey,
-        question_count:question_count,
-        option_count:option_count}));
     setSurveys([...surveys, data]);
   };
 
@@ -76,7 +69,6 @@ function App() {
       <Header
       title={"Survey Builder"}
       onAddSurvey={()=>{
-        setShowAddSurvey(!showAddSurvey);
       }}
       showAddSurvey={showAddSurvey}
       />
@@ -88,7 +80,6 @@ function App() {
                 {surveys.length > 0 ? (
                   <Surveys
                     surveys={surveys}
-
                   />
                 ) : (
                   "No Surveys To Show"
@@ -105,7 +96,6 @@ function App() {
                   onAddQuestion={(e)=>{
                   e.preventDefault();
                   setQCount(question_count + 1);
-                  // console.log(question_count);
                 }
 
               }
@@ -113,7 +103,6 @@ function App() {
                   onAddOption={(e)=>{
                   e.preventDefault();
                   setOCount(option_count + 1);
-                  //setShowAddOption(!showAddOption);
                   console.log(option_count);
                 }}
                   showAddOption={showAddOption}/>}>

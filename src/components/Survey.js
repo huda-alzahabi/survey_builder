@@ -1,3 +1,5 @@
+/*Survey Component To Include in the list of Surveys*/
+
 import React, { useState } from "react";
 import { FaArrowCircleRight } from "react-icons/fa";
 

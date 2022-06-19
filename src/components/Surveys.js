@@ -1,3 +1,5 @@
+/*Surveys Component that includes all Surveys*/
+
 import React from 'react';
 import Survey from './Survey';
 
