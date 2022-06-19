@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     const getSurveys = async () => {
       const surveysFromServer = await fetchSurveys();
-      console.log(surveysFromServer);
+      // console.log(surveysFromServer);
       setSurveys(surveysFromServer);
     };
     getSurveys();
@@ -31,9 +31,8 @@ function App() {
     try {
       const res = await fetch("http://127.0.0.1:8000/api/v1/user/get_surveys");
       const data = await res.json();
-      console.log(data.surveys);
+      //console.log(data.surveys);
       return data.surveys;
-
     } catch (err) {
       console.log(err);
     }
@@ -44,71 +43,82 @@ function App() {
     const res = await fetch("http://127.0.0.1:8000/api/v1/admin/add_survey", {
       method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        "Content-Type": "application/json",
+        Accept: "application/json",
       },
-      body: JSON.stringify(
-       { survey,
-        question_count:question_count,
-        option_count:option_count})
+      body: JSON.stringify({
+        survey,
+        question_count: question_count,
+        option_count: option_count,
+      }),
     });
     const data = await res.json();
+    console.log(
+      JSON.stringify({
+        survey,
+        question_count: question_count,
+        option_count: option_count,
+      })
+    );
     setSurveys([...surveys, data]);
   };
 
-
   //Fetch one survey from backend
   const fetchSurvey = async (id) => {
-    const res = await fetch(`http://127.0.0.1:8000/api/v1/user/get_survey?survey_id=${id}`);
+    const res = await fetch(
+      `http://127.0.0.1:8000/api/v1/user/get_survey?survey_id=${id}`
+    );
     const data = await res.json();
     return data;
   };
 
-    return(
-     <BrowserRouter><div className = "container">
-      <Header
-      title={"Survey Builder"}
-      onAddSurvey={()=>{
-      }}
-      showAddSurvey={showAddSurvey}
-      />
-      <Routes>
+  return (
+    <BrowserRouter>
+      <div className="container">
+        <Header
+          title={"Survey Builder"}
+          onAddSurvey={() => {}}
+          showAddSurvey={showAddSurvey}
+        />
+        <Routes>
           <Route
-            path="/" element={
+            path="/"
+            element={
               <>
-                {showAddSurvey }
+                {showAddSurvey}
                 {surveys.length > 0 ? (
-                  <Surveys
-                    surveys={surveys}
-                  />
+                  <Surveys surveys={surveys} />
                 ) : (
                   "No Surveys To Show"
                 )}
-              </>}
-              ></Route>
-              <Route
-                path="/AddSurvey"
-                element={
-                <AddSurvey
+              </>
+            }
+          ></Route>
+          <Route
+            path="/AddSurvey"
+            element={
+              <AddSurvey
                 onAdd={addSurvey}
-                  question_count={question_count}
-                  option_count={option_count}
-                  onAddQuestion={(e)=>{
+                question_count={question_count}
+                option_count={option_count}
+                onAddQuestion={(e) => {
                   e.preventDefault();
                   setQCount(question_count + 1);
-                }
-
-              }
-                  showAddQuestion={showAddQuestion}
-                  onAddOption={(e)=>{
+                }}
+                showAddQuestion={showAddQuestion}
+                onAddOption={(e) => {
                   e.preventDefault();
                   setOCount(option_count + 1);
                   console.log(option_count);
                 }}
-                  showAddOption={showAddOption}/>}>
-              </Route>
-        </Routes> </div>
-      </BrowserRouter>);
+                showAddOption={showAddOption}
+              />
+            }
+          ></Route>
+        </Routes>{" "}
+      </div>
+    </BrowserRouter>
+  );
 }
 
 export default App;
