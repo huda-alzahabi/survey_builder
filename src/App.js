@@ -5,6 +5,7 @@ import "./App.css";
 import Surveys from "./components/Surveys";
 import AddSurvey from "./components/AddSurvey";
 import Signup from "./components/Signup";
+import Login from "./components/Login";
 
 function App() {
   // Initialize State
@@ -68,7 +69,8 @@ function App() {
     <BrowserRouter>
       <div className="container">
         <Routes>
-          <Route path="/" element={<Signup />}></Route>
+          <Route path="/" element={<Login />}></Route>
+          <Route path="/Signup" element={<Signup />}></Route>
           <Route
             path="/AddSurvey"
             element={
