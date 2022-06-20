@@ -22,6 +22,7 @@ const AddSurvey = ({ onAdd }) => {
     setQuestions([]);
     setOptions([]);
   };
+
   const handleAddQuestion = () => {
     const newTotalCount = { ...totalCount };
     const newCount = { options: [1] };
@@ -30,7 +31,6 @@ const AddSurvey = ({ onAdd }) => {
     const newState = { ...state };
     const newQuestion = { question: "", type: "", options: [""] };
     newState.items.push(newQuestion);
-    console.log(newState);
     setState(newState);
   };
   const handleAddOption = (i) => {
@@ -54,6 +54,7 @@ const AddSurvey = ({ onAdd }) => {
     item.type = value;
     newState.items[i] = item;
     setState(newState);
+    console.log(newState);
   };
   const handleChangeOption = (value, i, j) => {
     const newState = { ...state };
@@ -98,7 +99,7 @@ const AddSurvey = ({ onAdd }) => {
             />
             <div
               onChange={(e) => {
-                handleChangeQuestionType(e.target.value);
+                handleChangeQuestionType(e.target.value, index);
               }}
             >
               <input
@@ -133,29 +134,33 @@ const AddSurvey = ({ onAdd }) => {
               </label>
             </div>
             <br />
-            <Button
-              color={"purple"}
-              text={"Add Choice"}
-              onClick={() => {
-                handleAddOption(index);
-              }}
-            />
-            {totalCount.items[index].options.map((c, index2) => {
-              return (
-                <div className="form-control option-control">
-                  <input
-                    key={c}
-                    id={index2}
-                    type="text"
-                    placeholder={"Choice field"}
-                    onChange={(e) => {
-                      handleChangeOption(e.target.value, index, index2);
-                    }}
-                  />
-                  <br />
-                </div>
-              );
-            })}
+            {state.items[index].type !== "Text" && (
+              <>
+                <Button
+                  color={"purple"}
+                  text={"Add Choice"}
+                  onClick={() => {
+                    handleAddOption(index);
+                  }}
+                />
+                {totalCount.items[index].options.map((c, index2) => {
+                  return (
+                    <div className="form-control option-control">
+                      <input
+                        key={c}
+                        id={index2}
+                        type="text"
+                        placeholder={"Choice field"}
+                        onChange={(e) => {
+                          handleChangeOption(e.target.value, index, index2);
+                        }}
+                      />
+                      <br />
+                    </div>
+                  );
+                })}
+              </>
+            )}
           </div>
         );
       })}

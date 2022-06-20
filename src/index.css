@@ -16,7 +16,7 @@ body {
     height: 70vw;
     border: 5px solid purple;
     padding: 30px;
-    border-radius: 5px;
+    border-radius: 35px;
 }
 
 .header {
@@ -117,4 +117,14 @@ body {
     width: fit-content;
     height: 50px;
     padding: 5px;
+}
+
+svg {
+    float: right;
+}
+
+.radios {
+    width: fit-content !important;
+    display: inline-block !important;
+    height: fit-content !important;
 }
