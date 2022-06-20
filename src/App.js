@@ -10,13 +10,12 @@ import Login from "./components/Login";
 function App() {
   // Initialize State
   const [surveys, setSurveys] = useState([]);
-  const [showAddSurvey, setShowAddSurvey] = useState(false);
-
-  const [showAddQuestion, setShowAddQuestion] = useState(false);
-  const [showAddOption, setShowAddOption] = useState(false);
+  const [answers, setAnswers] = useState([]);
 
   const [question_count, setQCount] = useState(1);
   const [option_count, setOCount] = useState(1);
+
+  const [questions_arr, setQuestionsArr] = useState([]);
 
   // Initialize all surveys into state from backend at component load
   useEffect(() => {
@@ -67,9 +66,8 @@ function App() {
   const getSurvey = async (id) => {
     const surveyToDisplay = await fetchSurvey(id);
     console.log(surveyToDisplay);
+    setQuestionsArr(surveyToDisplay["questions"]);
   };
-  //  const fetchSurveyQuestions = async (survey_id) => {
-  //   const  survey_clicked= await fetchSurvey(survey_id);
 
   return (
     <BrowserRouter>
@@ -88,13 +86,11 @@ function App() {
                   e.preventDefault();
                   setQCount(question_count + 1);
                 }}
-                showAddQuestion={showAddQuestion}
                 onAddOption={(e) => {
                   e.preventDefault();
                   setOCount(option_count + 1);
                   console.log(option_count);
                 }}
-                showAddOption={showAddOption}
               />
             }
           ></Route>
@@ -102,12 +98,7 @@ function App() {
             path="/ViewSurveys"
             element={
               <>
-                <Header
-                  title={"Survey Builder"}
-                  onAddSurvey={() => {}}
-                  showAddSurvey={showAddSurvey}
-                />
-                {showAddSurvey}
+                <Header title={"Survey Builder"} onAddSurvey={() => {}} />
                 {surveys.length > 0 ? (
                   <Surveys surveys={surveys} getSurvey={getSurvey} />
                 ) : (
@@ -115,6 +106,27 @@ function App() {
                 )}
               </>
             }
+          ></Route>{" "}
+          <Route
+            path="/DisplaySurvey"
+            element={questions_arr.map((ques, c, index) => {
+              return (
+                <>
+                  <h1 id={ques.id}>{ques.text}</h1>
+                  <input
+                    className="input"
+                    key={c}
+                    id={index}
+                    type="text"
+                    placeholder={"Answer"}
+                    value={c.question}
+                    onChange={(e) => {
+                      setAnswers([...answers, e.target.value]);
+                    }}
+                  />
+                </>
+              );
+            })}
           ></Route>
         </Routes>
       </div>
