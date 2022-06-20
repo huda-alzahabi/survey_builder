@@ -4,6 +4,7 @@ import Header from "./components/Header.js";
 import "./App.css";
 import Surveys from "./components/Surveys";
 import AddSurvey from "./components/AddSurvey";
+import Signup from "./components/Signup";
 
 function App() {
   // Initialize State
@@ -66,25 +67,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className="container">
-        <Header
-          title={"Survey Builder"}
-          onAddSurvey={() => {}}
-          showAddSurvey={showAddSurvey}
-        />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                {showAddSurvey}
-                {surveys.length > 0 ? (
-                  <Surveys surveys={surveys} />
-                ) : (
-                  "No Surveys To Show"
-                )}
-              </>
-            }
-          ></Route>
+          <Route path="/" element={<Signup />}></Route>
           <Route
             path="/AddSurvey"
             element={
@@ -106,7 +90,25 @@ function App() {
               />
             }
           ></Route>
-        </Routes>{" "}
+          <Route
+            path="/ViewSurveys"
+            element={
+              <>
+                <Header
+                  title={"Survey Builder"}
+                  onAddSurvey={() => {}}
+                  showAddSurvey={showAddSurvey}
+                />
+                {showAddSurvey}
+                {surveys.length > 0 ? (
+                  <Surveys surveys={surveys} />
+                ) : (
+                  "No Surveys To Show"
+                )}
+              </>
+            }
+          ></Route>
+        </Routes>
       </div>
     </BrowserRouter>
   );

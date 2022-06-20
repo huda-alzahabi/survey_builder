@@ -79,8 +79,8 @@ const AddSurvey = ({
         />
       </div>
       <Button
-        color={showAddQuestion ? "red" : "purple"}
-        text={showAddQuestion ? "Done" : "Add Question"}
+        color={"purple"}
+        text={"Add Question"}
         onClick={handleAddQuestion}
       />
       {totalCount.items.map((c, index) => {
@@ -90,7 +90,7 @@ const AddSurvey = ({
               key={c}
               id={index}
               type="text"
-              placeholder={"Text field"}
+              placeholder={"Question text"}
               value={c.question}
               onChange={(e) => {
                 handleChangeQuestion(e.target.value, index);
@@ -98,8 +98,8 @@ const AddSurvey = ({
             />
             <br />
             <Button
-              color={showAddOption ? "red" : "purple"}
-              text={showAddOption ? "Done" : "Add Choice"}
+              color={"purple"}
+              text={"Add Choice"}
               onClick={() => {
                 handleAddOption(index);
               }}
@@ -111,7 +111,7 @@ const AddSurvey = ({
                     key={c}
                     id={index2}
                     type="text"
-                    placeholder={"Text field"}
+                    placeholder={"Choice field"}
                     onChange={(e) => {
                       handleChangeOption(e.target.value, index, index2);
                     }}
