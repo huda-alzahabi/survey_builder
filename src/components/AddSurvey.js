@@ -2,14 +2,14 @@
 
 import React, { useState } from "react";
 import Button from "./Button";
+
 const template = { items: [{ question: "", type: "", options: [""] }] };
 const optionsCount = { items: [{ options: [1] }] };
+
 const AddSurvey = ({ onAdd }) => {
   // Initialize Input State
   const [title, setTitle] = useState("");
   const [state, setState] = useState(template);
-  const [questions, setQuestions] = useState([]);
-  const [options, setOptions] = useState([]);
   const [totalCount, setTotalCount] = useState(optionsCount);
 
   //Add Data to Backend on Submit
@@ -19,10 +19,9 @@ const AddSurvey = ({ onAdd }) => {
     setState(template);
     setTotalCount(optionsCount);
     setTitle("");
-    setQuestions([]);
-    setOptions([]);
   };
 
+  // Handle button click on Add Question, increment question count
   const handleAddQuestion = () => {
     const newTotalCount = { ...totalCount };
     const newCount = { options: [1] };
@@ -33,14 +32,8 @@ const AddSurvey = ({ onAdd }) => {
     newState.items.push(newQuestion);
     setState(newState);
   };
-  const handleAddOption = (i) => {
-    const newTotalCount = { ...totalCount };
-    newTotalCount.items[i].options.push(1);
-    setTotalCount(newTotalCount);
-    const newState = { ...state };
-    newState.items[i].options.push("");
-    setState(newState);
-  };
+
+  // Handle Change Question, set value of question according to the admin's input
   const handleChangeQuestion = (value, i) => {
     const newState = { ...state };
     const item = { ...newState.items[i] };
@@ -48,6 +41,8 @@ const AddSurvey = ({ onAdd }) => {
     newState.items[i] = item;
     setState(newState);
   };
+
+  // Handle Change Question Type,set value of question type according to the admin's input
   const handleChangeQuestionType = (value, i) => {
     const newState = { ...state };
     const item = { ...newState.items[i] };
@@ -56,6 +51,18 @@ const AddSurvey = ({ onAdd }) => {
     setState(newState);
     console.log(newState);
   };
+
+  // Handle button click on Add Option, increment option count
+  const handleAddOption = (i) => {
+    const newTotalCount = { ...totalCount };
+    newTotalCount.items[i].options.push(1);
+    setTotalCount(newTotalCount);
+    const newState = { ...state };
+    newState.items[i].options.push("");
+    setState(newState);
+  };
+
+  // Handle Change Option,set value of option according to the admin's input
   const handleChangeOption = (value, i, j) => {
     const newState = { ...state };
     const items = [...newState.items];

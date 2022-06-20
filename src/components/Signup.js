@@ -49,7 +49,6 @@ const Signup = () => {
       setError(true);
     } else {
       addUser();
-      // signup({ name, email, password, password_confirmation });
       setName("");
       setEmail("");
       setPassword("");
