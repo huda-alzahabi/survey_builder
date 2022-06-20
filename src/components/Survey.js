@@ -3,9 +3,14 @@
 import React, { useState } from "react";
 import { FaArrowCircleRight } from "react-icons/fa";
 
-const Survey = ({ survey }) => {
+const Survey = ({ survey, getSurvey }) => {
   return (
-    <div className="survey">
+    <div
+      className="survey"
+      onClick={() => {
+        getSurvey(survey.id);
+      }}
+    >
       <h3>
         {" "}
         {survey.title} <FaArrowCircleRight />

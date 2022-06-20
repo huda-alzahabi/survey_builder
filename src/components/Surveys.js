@@ -1,12 +1,16 @@
 /*Surveys Component that includes all Surveys*/
 
-import React from 'react';
-import Survey from './Survey';
+import React from "react";
+import Survey from "./Survey";
 
-const Surveys = ({surveys}) => {
-    return ( <> {
-        surveys.map((survey) => (<Survey key={survey.id} survey={survey}/>))
-    } </>
+const Surveys = ({ surveys, getSurvey }) => {
+  return (
+    <>
+      {" "}
+      {surveys.map((survey) => (
+        <Survey key={survey.id} survey={survey} getSurvey={getSurvey} />
+      ))}{" "}
+    </>
   );
 };
 

@@ -64,6 +64,12 @@ function App() {
     const data = await res.json();
     return data;
   };
+  const getSurvey = async (id) => {
+    const surveyToDisplay = await fetchSurvey(id);
+    console.log(surveyToDisplay);
+  };
+  //  const fetchSurveyQuestions = async (survey_id) => {
+  //   const  survey_clicked= await fetchSurvey(survey_id);
 
   return (
     <BrowserRouter>
@@ -103,7 +109,7 @@ function App() {
                 />
                 {showAddSurvey}
                 {surveys.length > 0 ? (
-                  <Surveys surveys={surveys} />
+                  <Surveys surveys={surveys} getSurvey={getSurvey} />
                 ) : (
                   "No Surveys To Show"
                 )}
