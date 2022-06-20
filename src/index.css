@@ -13,8 +13,8 @@ body {
     width: 60vw;
     margin: 30px auto;
     overflow: auto;
-    height: 80vw;
-    border: 1px solid purple;
+    height: 70vw;
+    border: 5px solid purple;
     padding: 30px;
     border-radius: 5px;
 }
@@ -96,11 +96,6 @@ body {
     height: 20px;
 }
 
-footer {
-    margin-top: 30px;
-    text-align: center;
-}
-
 .option-control {
     margin-left: 20px;
 }
@@ -119,16 +114,6 @@ footer {
 .error {
     display: block;
     background-color: red;
-    color: white;
-    width: fit-content;
-    height: 50px;
-    padding: 5px;
-}
-
-.success {
-    display: block;
-    background-color: lightblue;
-    color: black;
     width: fit-content;
     height: 50px;
     padding: 5px;

@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
 const Signup = () => {
+  const nav = useNavigate();
   // States for registration
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -58,20 +59,6 @@ const Signup = () => {
     }
   };
 
-  // Showing success message
-  const successMessage = () => {
-    return (
-      <div
-        className="success"
-        style={{
-          display: submitted ? "" : "none",
-        }}
-      >
-        <h1>User {name} successfully registered!!</h1>
-      </div>
-    );
-  };
-
   // Showing error message if error is true
   const errorMessage = () => {
     return (
@@ -103,6 +90,7 @@ const Signup = () => {
       },
       body: JSON.stringify(_data),
     });
+    nav("/ViewSurveys");
   };
 
   return (
@@ -111,11 +99,7 @@ const Signup = () => {
         <h1>User Registration</h1>
       </div>
 
-      {/* Calling to the methods */}
-      <div className="messages">
-        {errorMessage()}
-        {successMessage()}
-      </div>
+      <div className="messages">{errorMessage()}</div>
 
       <form>
         {/* Labels and inputs for form data */}
@@ -153,9 +137,8 @@ const Signup = () => {
           placeholder={"Confirm Password"}
           type="password"
         />
-        <Link to="/ViewSurveys">
-          <Button color={"purple"} text={"Signup"} onClick={handleSubmit} />
-        </Link>
+
+        <Button color={"purple"} text={"Signup"} onClick={handleSubmit} />
       </form>
     </div>
   );
