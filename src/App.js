@@ -48,7 +48,7 @@ function App() {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        survey,
+        ...survey,
       }),
     });
     const data = await res.json();

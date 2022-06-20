@@ -16,9 +16,7 @@ const AddSurvey = ({ onAdd }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     onAdd({ title, ...state });
-    setState(template);
     setTotalCount(optionsCount);
-    setTitle("");
   };
 
   // Handle button click on Add Question, increment question count
@@ -81,7 +79,6 @@ const AddSurvey = ({ onAdd }) => {
         <input
           type="text"
           placeholder="Add Survey"
-          value={title}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
