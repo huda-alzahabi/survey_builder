@@ -138,8 +138,9 @@ const Signup = () => {
           placeholder={"Confirm Password"}
           type="password"
         />
-
-        <Button color={"purple"} text={"Signup"} onClick={handleSubmit} />
+        <div className="loginbtn">
+          <Button color={"#859eb8"} text={"Signup"} onClick={handleSubmit} />
+        </div>
       </form>
     </div>
   );

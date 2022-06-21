@@ -6,7 +6,11 @@
 }
 
 body {
+    background: linear-gradient(rgba(0, 0, 0.1, 0.5), rgba(0, 0, 0, 0.2)), url(./bg.jpg);
+    background-size: cover;
     font-family: "Poppins", sans-serif;
+    color: white;
+    font-weight: bold;
 }
 
 .container {
@@ -15,7 +19,7 @@ body {
     margin: 30px auto;
     overflow: auto;
     min-height: 30vw;
-    border: 5px solid purple;
+    border: 5px solid #a6c3e0;
     padding: 30px;
     border-radius: 35px;
 }
@@ -29,8 +33,7 @@ body {
 
 .btn {
     display: inline-block;
-    background: #000;
-    color: #fff;
+    color: rgb(25 11 62);
     border: none;
     padding: 10px;
     margin: 5px;
@@ -39,6 +42,7 @@ body {
     text-decoration: none;
     font-size: 15px;
     font-family: inherit;
+    font-weight: bolder;
 }
 
 .btn:focus {
@@ -50,12 +54,15 @@ body {
 }
 
 .btn-block {
+    font-weight: bolder;
     display: block;
     width: 100%;
+    background-color: #859eb8;
 }
 
 .survey {
-    background: #f4f4f4;
+    color: rgb(25 11 62);
+    background: #859eb8;
     margin: 5px;
     padding: 10px 20px;
     cursor: pointer;
@@ -107,6 +114,12 @@ body {
     padding: 5px;
 }
 
+label {
+    color: #859eb8;
+    font-weight: bold;
+    font-size: x-large;
+}
+
 .messages {
     display: flex;
     justify-content: center;
@@ -142,5 +155,5 @@ h2 {
 }
 
 h2 {
-    color: purple;
+    color: #859eb8;
 }

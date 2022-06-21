@@ -9,7 +9,7 @@ const Header = ({ onAddSurvey, showAddSurvey, title }) => {
     <header className="header">
       <h1>{title}</h1>
       <Link to="/AddSurvey">
-        <Button color={"purple"} text={"Add Survey"} onClick={onAddSurvey} />
+        <Button color={"#859eb8"} text={"Add Survey"} onClick={onAddSurvey} />
       </Link>
     </header>
   );

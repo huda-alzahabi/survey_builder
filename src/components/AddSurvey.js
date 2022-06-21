@@ -85,7 +85,7 @@ const AddSurvey = ({ onAdd }) => {
         />
       </div>
       <Button
-        color={"purple"}
+        color={"#859eb8"}
         text={"Add Question"}
         onClick={handleAddQuestion}
       />
@@ -141,7 +141,7 @@ const AddSurvey = ({ onAdd }) => {
             {state.items[index].type !== "Text" && (
               <>
                 <Button
-                  color={"purple"}
+                  color={"#859eb8"}
                   text={"Add Choice"}
                   onClick={() => {
                     handleAddOption(index);
