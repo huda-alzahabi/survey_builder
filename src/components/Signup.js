@@ -81,7 +81,7 @@ const Signup = () => {
       password_confirmation: password_confirmation,
     };
 
-    await fetch("http://127.0.0.1:8000/api/v1/register", {
+    const response = await fetch("http://127.0.0.1:8000/api/v1/register", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -89,6 +89,8 @@ const Signup = () => {
       },
       body: JSON.stringify(_data),
     });
+    const result = await response.json();
+    localStorage.setItem("user_id", result["user"].id);
     nav("/ViewSurveys");
   };
 

@@ -59,7 +59,7 @@ const Login = () => {
       password: password,
     };
 
-    await fetch("http://127.0.0.1:8000/api/v1/login", {
+    const res = await fetch("http://127.0.0.1:8000/api/v1/login", {
       method: "POST",
       headers: {
         Accept: "application/form-data",
@@ -67,6 +67,8 @@ const Login = () => {
       },
       body: JSON.stringify(_data),
     });
+    const result = await res.json();
+    window.localStorage.setItem("Bearer", result.access_token);
     nav("/ViewSurveys");
   };
 

@@ -16,6 +16,12 @@ function App() {
   const [option_count, setOCount] = useState(1);
 
   const [questions_arr, setQuestionsArr] = useState([]);
+  const [options_arr, setOptionsArr] = useState([]);
+
+  const [ques_options, setQuestionOptions] = useState([]);
+
+  const token = window.localStorage.getItem("Bearer");
+  console.log(token);
 
   // Initialize all surveys into state from backend at component load
   useEffect(() => {
@@ -46,6 +52,7 @@ function App() {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
+        Authorization: "Bearer " + token,
       },
       body: JSON.stringify({
         ...survey,
@@ -63,10 +70,22 @@ function App() {
     const data = await res.json();
     return data;
   };
+
+  //Get the questions of the clicked survey
   const getSurvey = async (id) => {
     const surveyToDisplay = await fetchSurvey(id);
-    console.log(surveyToDisplay);
     setQuestionsArr(surveyToDisplay["questions"]);
+    setOptionsArr(surveyToDisplay["options"]);
+  };
+
+  //Get the options of each question
+  const getQuestionOptions = (question_id) => {
+    for (var key in options_arr) {
+      if (options_arr[0][key].question_id === question_id) {
+        setQuestionOptions(...ques_options, options_arr[0][key].value);
+      }
+    }
+    return ques_options;
   };
 
   return (
@@ -113,6 +132,15 @@ function App() {
               return (
                 <>
                   <h1 id={ques.id}>{ques.text}</h1>
+                  {/* <div
+                    onClick={() => {
+                      getQuestionOptions(ques.id).map((opt) => {
+                        return <h1>{opt}</h1>;
+                      });
+                    }}
+                  >
+                    KKKKKKKK
+                  </div> */}
                   <input
                     className="input"
                     key={c}
