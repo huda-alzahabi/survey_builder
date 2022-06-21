@@ -10,10 +10,11 @@ body {
 }
 
 .container {
-    width: 60vw;
+    min-width: 10vw;
+    max-width: 50vw;
     margin: 30px auto;
     overflow: auto;
-    height: 70vw;
+    min-height: 30vw;
     border: 5px solid purple;
     padding: 30px;
     border-radius: 35px;
@@ -127,4 +128,19 @@ svg {
     width: fit-content !important;
     display: inline-block !important;
     height: fit-content !important;
+}
+
+h1,
+h2 {
+    text-align: center;
+}
+
+.loginbtn {
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
+}
+
+h2 {
+    color: purple;
 }

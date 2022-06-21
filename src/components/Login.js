@@ -101,7 +101,13 @@ const Login = () => {
           type="password"
         />
 
-        <Button color={"purple"} text={"Login"} onClick={handleSubmit} />
+        <div className="loginbtn">
+          <Button color={"purple"} text={"Login"} onClick={handleSubmit} />
+        </div>
+        <div>
+          <h1>Don't Have an account?</h1>
+          <h2>Register</h2>
+        </div>
       </form>
     </div>
   );
