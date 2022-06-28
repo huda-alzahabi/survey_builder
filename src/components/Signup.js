@@ -71,6 +71,9 @@ const Signup = () => {
       </div>
     );
   };
+  const backtoMain = () => {
+    nav("/");
+  };
 
   //Sending the user to the users table in the db
   const addUser = async () => {
@@ -141,6 +144,13 @@ const Signup = () => {
         <div className="loginbtn">
           <Button color={"#859eb8"} text={"Signup"} onClick={handleSubmit} />
         </div>
+        <h2
+          role="button"
+          style={{ cursor: "pointer" }}
+          onClick={() => backtoMain()}
+        >
+          Back
+        </h2>
       </form>
     </div>
   );

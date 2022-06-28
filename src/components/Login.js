@@ -52,6 +52,9 @@ const Login = () => {
     );
   };
 
+  const register = () => {
+    nav("/Signup");
+  };
   //Sending the user to the users table in the db
   const login = async () => {
     let _data = {
@@ -106,7 +109,13 @@ const Login = () => {
         </div>
         <div>
           <h1>Don't Have an account?</h1>
-          <h2>Register</h2>
+          <h2
+            role="button"
+            style={{ cursor: "pointer" }}
+            onClick={() => register()}
+          >
+            Register
+          </h2>
         </div>
       </form>
     </div>
